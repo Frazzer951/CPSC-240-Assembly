@@ -55,7 +55,7 @@ int main()
   double result_code = -999;
   printf( "Welcome to an friendly assembly program by Luke Eltiste.\n" );
   result_code = perimeter();
-  printf( "The main function received this number %lf and has decided to keep it.\n", result_code );
+  printf( "The main function received this number %1.2lf and has decided to keep it.\n", result_code );
   printf( "A 0 will be returned to the operating system.\n" );
   printf( "Have a nice day.\n" );
   return 0;

@@ -52,9 +52,9 @@ welcome db "This program will compute the perimeter and the average side length 
 floatformat db "%lf", null                                                                                      ; Float Format
 stringformat db "%s", null                                                                                      ; Message Format
 enterheight db "Enter the height:   ", null                                                                     ; Ask for height
-enterwidth db "Enter the width:    ", null                                                                     ; Ask for width
-perimeterprint db "The perimeter is %3.6lf", newline, null                                                              ; Print the perimeter
-avglength db "The length of the average side is %3.6lf", newline, null                                          ; Print the average side
+enterwidth db "Enter the width:    ", null                                                                      ; Ask for width
+perimeterprint db "The perimeter is %1.2lf", newline, null                                                      ; Print the perimeter
+avglength db "The length of the average side is %1.2lf", newline, null                                          ; Print the average side
 enjoyrec db "I hope you enjoyed your rectangle", newline, null                                                  ; Goodbye Message
 return db "The assembly program will send the perimeter to the main function.", newline, null                   ; Return Message
 four dq 4.0                                                                                                     ; Number 4 for division
