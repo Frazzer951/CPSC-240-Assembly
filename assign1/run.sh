@@ -6,6 +6,7 @@
 #Delete some un-needed files
 rm *.o
 rm *.out
+rm *.lis
 
 echo "Assemble perimeter.asm"
 nasm -f elf64 -l perimeter.lis -o perimeter.o perimeter.asm
@@ -18,5 +19,9 @@ gcc -m64 -no-pie -o perimeterOfRectangle.out -std=c++17 perimeter.o rectangle.o
 
 echo "Run the program Area of Rectangle:"
 ./perimeterOfRectangle.out
+
+echo "Delete some un-needed files"
+rm *.o
+rm *.lis
 
 echo "The script file will terminate"
