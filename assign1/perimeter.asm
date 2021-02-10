@@ -57,7 +57,6 @@ perimeterprint db "The perimeter is %1.2lf", newline, null                      
 avglength db "The length of the average side is %1.2lf", newline, null                                          ; Print the average side
 enjoyrec db "I hope you enjoyed your rectangle", newline, null                                                  ; Goodbye Message
 return db "The assembly program will send the perimeter to the main function.", newline, null                   ; Return Message
-four dq 4.0                                                                                                     ; Number 4 for division
 
 segment .text
 perimeter:
@@ -135,8 +134,10 @@ call printf
 pop rax
 
 ; Find the average side length
-movsd xmm0, qword xmm12
-divsd xmm0, qword [four]
+mov r8, 4
+cvtsi2sd xmm8, r8
+movsd xmm0, xmm12
+divsd xmm0, xmm8
 movsd xmm13, xmm0
 
 ; Print out the perimiter
