@@ -7,16 +7,16 @@
 rm *.o
 rm *.out
 
-echo "Assemble perimiter.asm"
-nasm -f elf64 -l perimiter.lis -o perimiter.o perimiter.asm
+echo "Assemble perimeter.asm"
+nasm -f elf64 -l perimeter.lis -o perimeter.o perimeter.asm
 
 echo "Compile rectangle.cpp"
 gcc -c -Wall -m64 -no-pie -o rectangle.o rectangle.cpp -std=c++17
 
 echo "Link the object files"
-gcc -m64 -no-pie -o perimiterOfRectangle.out -std=c++17 perimiter.o rectangle.o
+gcc -m64 -no-pie -o perimeterOfRectangle.out -std=c++17 perimeter.o rectangle.o
 
 echo "Run the program Area of Rectangle:"
-./perimiterOfRectangle.out
+./perimeterOfRectangle.out
 
 echo "The script file will terminate"
