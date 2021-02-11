@@ -83,7 +83,7 @@ pushf                                                       ;Backup rflags
 push qword -1                                               ;Now the number of pushes is even
 ;Registers rax, rip, and rsp are usually not backed up.
 
-; Wecome Message
+; Welcome Message
 mov qword rdi, stringformat
 mov qword rsi, welcome
 mov qword rax, 0
@@ -136,9 +136,8 @@ pop rax
 ; Find the average side length
 mov r8, 4
 cvtsi2sd xmm8, r8
-movsd xmm0, xmm12
-divsd xmm0, xmm8
-movsd xmm13, xmm0
+movsd xmm13, xmm12
+divsd xmm13, xmm8
 
 ; Print out the perimiter
 push qword 0
