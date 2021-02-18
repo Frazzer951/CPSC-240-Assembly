@@ -1,0 +1,30 @@
+stringform db "%s", 0
+
+; Get userinput
+mov rax, 0
+mov rdi, stringform
+sub rsp, 512
+mov rsi, rsp
+call scanf
+
+; Check if number is good
+mov rax, 0
+mov rdi, rsp
+call ispositivefloat ; rax: 0=false, 1=true
+
+; Convert to float
+mov rax, 0
+mov rdi, rsp
+call atot
+add rsp, 512
+
+Future Questions:
+	do we have 3 scanf blocks to get each of the 3 numbers
+	
+	
+Questions:
+	For assignemnt two, we are supposed to create a program that will take the parts of a quadratic equation and return the roots to the user.
+	In the example, it show the user imputing all three inputs at the same time that are delimited by whitespace. But for each input we need to run it through out function `isfloat` to make sure it is a float.
+	So one question is, how do we take the three inputs and validate them with the external function, and when we have the validation how do we turn them into floats?
+	Also how do we take the returned boolean from the `isfloat` function and interpret it in the asm file?
+	

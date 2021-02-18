@@ -16,7 +16,7 @@
 //  Author email: lukeeltiste@csu.fullerton.edu
 //
 //Program information
-//  Program name: Perimiter of a Rectangle
+//  Program name: Perimeter of a Rectangle
 //  Programming languages: One modules in C++ and one module in X86
 //  Date program began:     2021-Jan-28
 //  Date program completed: 2021-Feb-09
