@@ -36,6 +36,8 @@
 
 extern printf
 extern scanf
+extern isfloat
+extern atof
 
 global quadratic
 
@@ -44,7 +46,9 @@ floatformat db "%lf", 0                                                         
 stringformat db "%s", 0                                                                                      ; Message Format
 welcome db "This program will find the roots of any quadratic equation.", 10, 0                              ; Welcome Message
 prompt db "Please enter the three floating point coefficients of a quadratic equation in the order a, b, c separated by white spaces.  Then press enter: ", 0 ; Prompt Message
-equation db "\nThank you. The equation is %lfx^2 + %lfx + %lf = 0.0\n" 10, 0                                 ; Display the equation
+equation db 10, "Thank you. The equation is %lfx^2 + %lfx + %lf = 0.0", 10, 10, 0                            ; Display the equation
+invalidstr db 10, "Invalid input data detected.  You may run this program again.", 10 , 10, 0                ; Invalid input
+bye db "One of these roots will be returned to the caller function.", 10, 0                                  ; Goodbye statement
 
 segment .text
 quadratic:
@@ -83,6 +87,92 @@ mov qword rsi, prompt
 mov qword rax, 0
 call printf
 
+; Get First Input
+push qword 0
+mov rdi, stringformat
+mov rsi, rsp
+mov rax, 1
+call scanf
+
+; Validate First Input
+mov rdi, rsp
+mov rax, 0
+call isfloat
+cmp rax, 0
+je invalid
+
+; Convert input to float
+mov rax, 1
+call atof
+movsd xmm10, xmm0
+pop rax
+
+; Get Second Input
+push qword 0
+mov rdi, stringformat
+mov rsi, rsp
+mov rax, 1
+call scanf
+
+; Validate Second Input
+mov rdi, rsp
+mov rax, 0
+call isfloat
+cmp rax, 0
+je invalid
+
+; Convert input to float
+mov rax, 1
+call atof
+movsd xmm11, xmm0
+pop rax
+
+; Get Third Input
+push qword 0
+mov rdi, stringformat
+mov rsi, rsp
+mov rax, 1
+call scanf
+
+; Validate Third Input
+mov rdi, rsp
+mov rax, 0
+call isfloat
+cmp rax, 0
+je invalid
+
+; Convert input to float
+mov rax, 1
+call atof
+movsd xmm12, xmm0
+pop rax
+
+; Print string with one variable
+push qword 0				; Make sure the registers are clear
+mov rax, 3					; There is one variable
+mov rdi, equation			;
+movsd xmm0, xmm10			; move the value stored in xmm10 into xmm0
+movsd xmm1, xmm11			; move the value stored in xmm11 into xmm1
+movsd xmm2, xmm12			; move the value stored in xmm12 into xmm2
+call printf					; call printf function
+pop rax						; pop the stored value from push qword statement
+
+
+; Goodbye Message
+mov qword rdi, stringformat
+mov qword rsi, bye
+mov qword rax, 0
+call printf
+
+jmp end ; skip past invalid block
+; Invalid Input
+invalid:
+mov qword rdi, stringformat
+mov qword rsi, invalidstr
+mov qword rax, 0
+call printf
+
+end:
 ;Restore the original values to the general registers before returning to the caller.
 pop rax                                                     ;Remove the extra -1 from the stack
 popf                                                        ;Restore rflags

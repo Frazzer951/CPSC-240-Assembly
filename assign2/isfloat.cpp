@@ -15,8 +15,8 @@
 //  Program name: assign2
 //  Programming languages: TODO
 //  Date program began:     2021-Feb-18
-//  Date program completed: 
-//  Date comments upgraded: 
+//  Date program completed:
+//  Date comments upgraded:
 //  Files in this program: second_degree.c, quadratic.asm, isfloat.cpp, quad_library.cpp
 //  Status: In Development.
 //
@@ -31,5 +31,30 @@
 //   Language: C++
 //   Max page width: 132 columns
 //   Assemble: gcc -c -Wall -m64 -no-pie -o isfloat.o isfloat.cpp -std=c++17
-//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o 
+//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o
 //   Optimal print specification: 132 columns width, 7 points, monospace, 8�x11 paper
+
+#include <cstdlib>
+#include <ctype.h>
+
+extern "C" bool isfloat( char[] );
+
+bool isfloat( char w[] )
+{
+  bool isNum      = true;    // This will turn false if a non-digit is found
+  int  oneDecimal = 0;       // Keep track of the number of decimals
+
+  int i = 0;                               // Starting place in the char array
+  if( w[0] == '+' || w[0] == '-' ) i++;    // If the user adds a + or - at the begining start at the next position
+
+  while( w[i] != '\0' && isNum )
+  {
+    if( w[i] == '.' ) { oneDecimal++; }    // If decimal is found increment counter
+    else
+    {
+      isNum = isNum && isdigit( w[i] );    //If the current char is not a number, isNum will be false
+    }
+    i++;
+  }
+  return isNum && oneDecimal < 2;    // If isNum is true and oneDecimal is below 2, return True
+}
