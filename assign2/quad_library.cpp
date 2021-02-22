@@ -13,12 +13,12 @@
 //
 //Program information
 //  Program name: assign2
-//  Programming languages: TODO
+//  Programming languages: One file in C, Two files in C++, and one file in X86
 //  Date program began:     2021-Feb-18
-//  Date program completed: 
-//  Date comments upgraded: 
+//  Date program completed: 2021-Feb-22
+//  Date comments upgraded: 2021-Feb-22
 //  Files in this program: second_degree.c, quadratic.asm, isfloat.cpp, quad_library.cpp
-//  Status: In Development.
+//  Status: Complete.  No errors found after extensive testing.
 //
 //References for this program
 //  Jorgensen, X86-64 Assembly Language Programming with Ubuntu, Version 1.1.40.
@@ -31,5 +31,24 @@
 //   Language: C++
 //   Max page width: 132 columns
 //   Assemble: gcc -c -Wall -m64 -no-pie -o quad_library.o quad_library.cpp -std=c++17
-//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o 
+//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o
 //   Optimal print specification: 132 columns width, 7 points, monospace, 8�x11 paper
+
+#include <stdio.h>
+
+extern "C" void show_no_root();
+extern "C" void show_one_root( double root );
+extern "C" void show_two_root( double root1, double root2 );
+
+void show_no_root()
+{
+  printf( "There are no real roots\n" );
+}
+void show_one_root( double root )
+{
+  printf( "The root is %1.9lf\n", root );
+}
+void show_two_root( double root1, double root2 )
+{
+  printf( "The roots are %1.9lf and %1.9lf.\n", root1, root2 );
+}

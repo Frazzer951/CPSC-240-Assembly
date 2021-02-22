@@ -13,12 +13,12 @@
 //
 //Program information
 //  Program name: assign2
-//  Programming languages: TODO
+//  Programming languages: One file in C, Two files in C++, and one file in X86
 //  Date program began:     2021-Feb-18
-//  Date program completed:
-//  Date comments upgraded:
+//  Date program completed: 2021-Feb-22
+//  Date comments upgraded: 2021-Feb-22
 //  Files in this program: second_degree.c, quadratic.asm, isfloat.cpp, quad_library.cpp
-//  Status: In Development.
+//  Status: Complete.  No errors found after extensive testing.
 //
 //References for this program
 //  Jorgensen, X86-64 Assembly Language Programming with Ubuntu, Version 1.1.40.

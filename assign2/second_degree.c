@@ -15,10 +15,10 @@
 //  Program name: assign2
 //  Programming languages: One file in C, Two files in C++, and one file in X86
 //  Date program began:     2021-Feb-18
-//  Date program completed: 
-//  Date comments upgraded: 
+//  Date program completed: 2021-Feb-22
+//  Date comments upgraded: 2021-Feb-22
 //  Files in this program: second_degree.c, quadratic.asm, isfloat.cpp, quad_library.cpp
-//  Status: In Development.
+//  Status: Complete.  No errors found after extensive testing.
 //
 //References for this program
 //  Jorgensen, X86-64 Assembly Language Programming with Ubuntu, Version 1.1.40.
@@ -31,7 +31,7 @@
 //   Language: C
 //   Max page width: 132 columns
 //   Assemble: gcc -c -Wall -m64 -no-pie -o second_degree.o second_degree.c -std=c11
-//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o 
+//   Link: gcc -m64 -no-pie -o assign2.out -std=c++17 second_degree.o quadratic.o isfloat.o quad_library.o
 //   Optimal print specification: 132 columns width, 7 points, monospace, 8�x11 paper
 
 #include <stdio.h>
@@ -43,7 +43,7 @@ int main()
   double result_code = -999;
   printf( "Welcome to Root Calculator\nProgrammed by Luke Eltiste, Professional Programmer.\n" );
   result_code = quadratic();
-  printf( "The main driver received %lf and has decided to keep it.\n", result_code );
+  printf( "The main driver received %1.9lf and has decided to keep it.\n", result_code );
   printf( "A 0 will be returned to the operating system. Have a nice day. Bye.\n" );
   return 0;
 }    //End of main
