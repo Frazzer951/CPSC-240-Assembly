@@ -56,5 +56,5 @@ bool isfloat( char w[] )
     }
     i++;
   }
-  return isNum && oneDecimal < 2;    // If isNum is true and oneDecimal is below 2, return True
+  return isNum && oneDecimal == 1;    // If isNum is true and oneDecimal is below 2, return True
 }

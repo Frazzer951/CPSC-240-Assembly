@@ -249,6 +249,7 @@ mov qword rdi, stringformat
 mov qword rsi, invalidstr
 mov qword rax, 0
 call printf
+pop rax
 
 end:
 ;Restore the original values to the general registers before returning to the caller.
