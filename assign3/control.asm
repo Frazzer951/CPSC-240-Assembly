@@ -18,8 +18,8 @@
 ;  Program name: Sum of an Array
 ;  Programming languages: One modules in C++, three modules in X86, and one module in C
 ;  Date program began:     2021-Mar-08
-;  Date program completed: 
-;  Date comments upgraded: 
+;  Date program completed:
+;  Date comments upgraded:
 ;  Files in this program: control.asm, display.cpp, fill.asm, main.c, script.sh, and sum.asm
 ;  Status: Complete.  No errors found after extensive testing.
 ;
@@ -37,10 +37,24 @@
 ;   Link: gcc -m64 -no-pie -o assign3.out -std=c++17 main.o control.o fill.o sum.o display.o
 ;   Optimal print specification: 132 columns width, 7 points, monospace, 8½x11 paper
 
+extern printf
+extern fill
+extern display
+extern sum
+
+array_size equ 100 ; Max size for the array
+
 global control
 
 segment .data
+stringFormat db "%s", 0
+welcome db "Welcome to HSAS.  The accuracy and reliability of this program is guaranteed by Luke E.", 10, 0
+numbers db "The number you entered are these:", 10, 0
+the_sum db "The sum of these values is %1.8lf", 10, 0
+exit db "The control module will now return the sum to the caller module.", 10, 0
 
+section .bss
+array: resq 100
 
 segment .text
 control:
@@ -67,7 +81,56 @@ pushf                                                       ;Backup rflags
 push qword -1                                               ;Now the number of pushes is even
 ;Registers rax, rip, and rsp are usually not backed up.
 
+; Print a welcome message
+mov qword rdi, stringFormat
+mov qword rsi, welcome
+mov qword rax, 0
+call printf
 
+; Fill array
+mov qword rdi, array      ; Pass the array to the fill function
+mov qword rsi, array_size ; Pass the max size to the fill function
+mov qword rax, 0
+call fill           ; Call the fill function
+mov r15, rax        ; Save the size of the array to r15
+
+; Print numbers
+mov qword rdi, stringFormat
+mov qword rsi, numbers
+mov qword rax, 0
+call printf
+
+; Display the Array
+push qword 0
+mov rdi, array  ; Pass the array to the display function
+mov rsi, r15    ; Pass the array size to the display function
+mov rax, 0
+call display    ; Call the display function
+pop rax
+
+; Sum the array
+mov rdi, array      ; Pass the array to the sum function
+mov rsi, r15        ; Pass the array size to the sum function
+mov rax, 0
+call sum            ; Call the sum function
+movsd xmm15, xmm0    ; Save the sum to xmm15
+
+; Print the sum value
+push qword 0
+mov rax, 1
+mov rdi, the_sum
+movsd xmm0, xmm15
+call printf
+pop rax
+
+; Print exit message
+mov qword rdi, stringFormat
+mov qword rsi, exit
+mov qword rax, 0
+call printf
+
+; Return values
+movsd xmm0, xmm15
 
 ;Restore the original values to the general registers before returning to the caller.
 pop rax                                                     ;Remove the extra -1 from the stack
@@ -87,5 +150,4 @@ pop rsi                                                     ;Restore rsi
 pop rdi                                                     ;Restore rdi
 pop rbp                                                     ;Restore rbp
 
-movsd xmm0, xmm0
 ret

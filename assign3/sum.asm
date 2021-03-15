@@ -41,7 +41,6 @@ global sum
 
 segment .data
 
-
 segment .text
 sum:
 
@@ -67,7 +66,29 @@ pushf                                                       ;Backup rflags
 push qword -1                                               ;Now the number of pushes is even
 ;Registers rax, rip, and rsp are usually not backed up.
 
+; Grab inputs
+mov r15, rdi    ;r15 is now the array
+mov r14, rsi    ;r14 is now the number of elements in the array
+mov r13, 0      ;r13 is the for loop counter
 
+; Initialize xmm15 to 0
+mov r8, 0
+cvtsi2sd xmm8, r8
+movsd xmm15, xmm8 ; xmm15 is the sum
+
+; Sum loop
+beginloop:
+cmp r13, r14    ; r13 = count, r14 = size
+jge leaveloop   ; Leave loop if at end of array
+
+; Add current element to sum
+addsd xmm15, [r15 + 8 * r13]
+inc r13
+
+jmp beginloop ; Restart loop
+
+leaveloop:
+movsd xmm0, xmm15
 
 ;Restore the original values to the general registers before returning to the caller.
 pop rax                                                     ;Remove the extra -1 from the stack
@@ -87,5 +108,4 @@ pop rsi                                                     ;Restore rsi
 pop rdi                                                     ;Restore rdi
 pop rbp                                                     ;Restore rbp
 
-movsd xmm0, xmm0
 ret

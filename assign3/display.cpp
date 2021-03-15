@@ -36,3 +36,15 @@
 //   Assemble: gcc -c -Wall -m64 -no-pie -o display.o display.cpp -std=c++17
 //   Link: gcc -m64 -no-pie -o assign3.out -std=c++17 main.o control.o fill.o sum.o display.o
 //   Optimal print specification: 132 columns width, 7 points, monospace, 8½x11 paper
+
+#include <stdio.h>
+
+extern "C" void display( double array[], long size );
+
+void display( double array[], long size )
+{
+  for( long i = 0; i < size; ++i )
+  {
+    printf( "%lf\n", array[i] );
+  }
+}

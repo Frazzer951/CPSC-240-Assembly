@@ -18,8 +18,8 @@
 ;  Program name: Sum of an Array
 ;  Programming languages: One modules in C++, three modules in X86, and one module in C
 ;  Date program began:     2021-Mar-08
-;  Date program completed: 
-;  Date comments upgraded: 
+;  Date program completed:
+;  Date comments upgraded:
 ;  Files in this program: control.asm, display.cpp, fill.asm, main.c, script.sh, and sum.asm
 ;  Status: Complete.  No errors found after extensive testing.
 ;
@@ -37,10 +37,15 @@
 ;   Link: gcc -m64 -no-pie -o assign3.out -std=c++17 main.o control.o fill.o sum.o display.o
 ;   Optimal print specification: 132 columns width, 7 points, monospace, 8½x11 paper
 
+extern scanf
+extern printf
+
 global fill
 
 segment .data
-
+start db "Please enter floating point numbers separated by ws.", 10, "When finished press enter followed by cntl+D.", 10, 0
+format db "%lf", 0
+stringformat db "%s", 0
 
 segment .text
 fill:
@@ -67,10 +72,52 @@ pushf                                                       ;Backup rflags
 push qword -1                                               ;Now the number of pushes is even
 ;Registers rax, rip, and rsp are usually not backed up.
 
+; Grab inputs
+mov r15, rdi ;r15 is now the array
+mov r14, rsi ;r14 is now the max number of elements in the array
+mov r13, 0   ;r13 is the for loop counter
 
+; Print a loop instructions
+push qword 0
+mov qword rdi, stringformat
+mov qword rsi, start
+mov qword rax, 0
+call printf
+
+; Input loop
+beginloop:
+cmp r13, r14    ; r13 = count, r14 = max
+jge exit        ; Leave loop if array is full
+
+; Get user input
+
+mov rdi, format
+push qword 0
+mov rsi, rsp
+mov rax, 0
+call scanf
+
+; Check for ctrl-D
+cdqe            ; Signal in all of rax
+cmp rax, -1
+je leaveloop    ; Leave the loop because ctrl-D was entered
+
+; Put input in the array
+movsd xmm15, xmm0              ; Put input into r12
+movsd [r15 + 8 * r13], xmm15    ; Add input to array
+inc r13
+pop rax
+jmp beginloop           ; End of loop
+
+; Exit of loop
+leaveloop:
+pop rax
+exit:
+pop rax
 
 ;Restore the original values to the general registers before returning to the caller.
 pop rax                                                     ;Remove the extra -1 from the stack
+mov rax, r13                                                ; Copy number of elements to rax
 popf                                                        ;Restore rflags
 pop rbx                                                     ;Restore rbx
 pop r15                                                     ;Restore r15
@@ -87,5 +134,4 @@ pop rsi                                                     ;Restore rsi
 pop rdi                                                     ;Restore rdi
 pop rbp                                                     ;Restore rbp
 
-movsd xmm0, xmm0
 ret
