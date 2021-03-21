@@ -18,8 +18,8 @@
 //  Program name: Sum of an Array
 //  Programming languages: One modules in C++, three modules in X86, and one module in C
 //  Date program began:     2021-Mar-08
-//  Date program completed:
-//  Date comments upgraded:
+//  Date program completed: 2021-Mar-14
+//  Date comments upgraded: 2021-Mar-20
 //  Files in this program: control.asm, display.cpp, fill.asm, main.c, script.sh, and sum.asm
 //  Status: Complete.  No errors found after extensive testing.
 //
@@ -44,7 +44,7 @@ double control();
 int main()
 {
   double result_code = -999;
-  printf( "Welcome to High Speed Array Summation by Luke Eltiste. \nSoftware Licensed by GNU GPL 3.0 \nVersion 1.0 released on March 8, 2021. \n" );
+  printf( "Welcome to High Speed Array Summation by Luke Eltiste. \nSoftware Licensed by GNU GPL 3.0 \nVersion 1.0 released on March 14, 2021. \n" );
   result_code = control();
   printf( "The main has received this number %1.9lf and will keep it.\n", result_code );
   printf( "Thank you for using High Speed Array Software. \n" );

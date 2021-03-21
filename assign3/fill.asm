@@ -18,8 +18,8 @@
 ;  Program name: Sum of an Array
 ;  Programming languages: One modules in C++, three modules in X86, and one module in C
 ;  Date program began:     2021-Mar-08
-;  Date program completed:
-;  Date comments upgraded:
+;  Date program completed: 2021-Mar-14
+;  Date comments upgraded: 2021-Mar-20
 ;  Files in this program: control.asm, display.cpp, fill.asm, main.c, script.sh, and sum.asm
 ;  Status: Complete.  No errors found after extensive testing.
 ;
@@ -90,7 +90,6 @@ cmp r13, r14    ; r13 = count, r14 = max
 jge exit        ; Leave loop if array is full
 
 ; Get user input
-
 mov rdi, format
 push qword 0
 mov rsi, rsp
@@ -103,11 +102,11 @@ cmp rax, -1
 je leaveloop    ; Leave the loop because ctrl-D was entered
 
 ; Put input in the array
-movsd xmm15, xmm0              ; Put input into r12
+movsd xmm15, xmm0               ; Put input into r12
 movsd [r15 + 8 * r13], xmm15    ; Add input to array
 inc r13
 pop rax
-jmp beginloop           ; End of loop
+jmp beginloop                   ; End of loop
 
 ; Exit of loop
 leaveloop:

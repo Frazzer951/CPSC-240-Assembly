@@ -18,8 +18,8 @@
 //  Program name: Sum of an Array
 //  Programming languages: One modules in C++, three modules in X86, and one module in C
 //  Date program began:     2021-Mar-08
-//  Date program completed:
-//  Date comments upgraded:
+//  Date program completed: 2021-Mar-14
+//  Date comments upgraded: 2021-Mar-20
 //  Files in this program: control.asm, display.cpp, fill.asm, main.c, script.sh, and sum.asm
 //  Status: Complete.  No errors found after extensive testing.
 //
@@ -45,6 +45,6 @@ void display( double array[], long size )
 {
   for( long i = 0; i < size; ++i )
   {
-    printf( "%lf\n", array[i] );
+    printf( "%1.8lf\n", array[i] );
   }
 }
