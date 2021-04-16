@@ -1,5 +1,5 @@
 //*****************************************************************************************************************************
-//Program name: "".                                                                                                           *
+//Program name: "Interview". This program will conduct an interview and give you a job offer                                  *
 //Copyright (C) 2021 Luke Eltiste                                                                                             *
 //This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License   *
 //version 3 as published by the Free Software Foundation.                                                                     *
@@ -27,14 +27,14 @@
 //  Jorgensen, X86-64 Assembly Language Programming with Ubuntu, Version 1.1.40.
 //
 //Purpose
-//
+// To show how to take Char's as input and use them in the program structure
 //
 //This file
 //   File name: main.cpp
 //   Language: C++
 //   Max page width: 132 columns
-//   Assemble:
-//   Link:
+//   Assemble: g++ -c -Wall -m64 -no-pie -o main.o main.cpp -std=c++17
+//   Link:     g++ -m64 -no-pie -o interview.out -std=c++17 main.o interview.o
 //   Optimal print specification: 132 columns width, 7 points, monospace, 8½x11 paper
 
 #include <cstring>
@@ -57,7 +57,7 @@ int main()
   std::cin >> first >> last;                         // Take first and lastname
   strcpy( name, ( first + ' ' + last ).c_str() );    // Combine first and last name into cstring name
 
-  std::cout << "Thank you " << name << ".  Our records show that you applied for employment her with our agency a week ago.\n";
+  std::cout << "Thank you " << name << ". Our records show that you applied for employment her with our agency a week ago.\n";
   std::cout << "Please enter your expected annual salary when employed at Paramount: ";
   std::cin >> salary;
   std::cout << "Your interview with Ms Linda Fenster, Personnel Manager, will begin shortly.\n";
