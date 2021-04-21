@@ -16,7 +16,7 @@
 ;
 ;Program information
 ;  Program name: Sum of an Array
-;  Programming languages:
+;  Programming languages:  One file in C++, and One file in X68 Assembly
 ;  Date program began:     2021-Apr-16
 ;  Date program completed:
 ;  Date comments upgraded:
@@ -111,7 +111,7 @@ mov r14, 'y'
 cmp rax, r14
 jne ResistanceTest ; If answer is not 'y' goto test
 
-mov rax, 0x412E848000000000 ; Put 1000000 into rax
+mov rax, 0x412E848000000000 ; Put 1000000.00 into rax
 movq xmm14, rax             ; Put 1000000.00 into xmm14
 jmp end                     ; Jump to the end
 

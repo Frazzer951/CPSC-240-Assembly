@@ -16,7 +16,7 @@
 //
 //Program information
 //  Program name: Sum of an Array
-//  Programming languages:
+//  Programming languages:  One file in C++, and One file in X68 Assembly
 //  Date program began:     2021-Arp-16
 //  Date program completed:
 //  Date comments upgraded:
@@ -45,17 +45,14 @@ extern "C" double interview( char[], double );
 
 int main()
 {
-  double      offer = -999;
-  char        name[100];
-  std::string first;
-  std::string last;
-  double      salary;
+  double offer = -999;
+  char   name[100];
+  double salary;
 
   std::cout << "Welcome to Software Analysis by Paramount Programmers, Inc.\n";
   std::cout << "Please enter your first and last names and press enter: ";
 
-  std::cin >> first >> last;                         // Take first and lastname
-  strcpy( name, ( first + ' ' + last ).c_str() );    // Combine first and last name into cstring name
+  std::cin.getline( name, sizeof( name ) );    // Take first and lastname
 
   std::cout << "Thank you " << name << ". Our records show that you applied for employment her with our agency a week ago.\n";
   std::cout << "Please enter your expected annual salary when employed at Paramount: ";
