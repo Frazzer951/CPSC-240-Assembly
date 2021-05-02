@@ -18,9 +18,9 @@
 //  Program name: Sum of an Array
 //  Programming languages:  One file in C++, and One file in X68 Assembly
 //  Date program began:     2021-Arp-16
-//  Date program completed:
-//  Date comments upgraded:
-//  Files in this program:
+//  Date program completed: 2021-Arp-25
+//  Date comments upgraded: 2021-Arp-25
+//  Files in this program:  main.cpp and interview.asm
 //  Status: Complete.  No errors found after extensive testing.
 //
 //References for this program
@@ -61,6 +61,7 @@ int main()
 
   offer = interview( name, salary );    // Get the interview offer
 
+  // Print out the correct message based on the offer received.
   if( offer < 50000 )    // offer < 50k
   {
     std::cout << "Hello " << name << " I am the receptionist\n";

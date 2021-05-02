@@ -18,9 +18,9 @@
 ;  Program name: Sum of an Array
 ;  Programming languages:  One file in C++, and One file in X68 Assembly
 ;  Date program began:     2021-Apr-16
-;  Date program completed:
-;  Date comments upgraded:
-;  Files in this program:
+;  Date program completed: 2021-Apr-25
+;  Date comments upgraded: 2021-Apr-25
+;  Files in this program:  main.cpp and interview.asm
 ;  Status: Complete.  No errors found after extensive testing.
 ;
 ;References for this program
@@ -199,7 +199,7 @@ pop rax
 
 mov r14, 'y'
 cmp rax, r14
-je csMajor ; If answer is not 'y' goto test
+je csMajor ; If answer is not 'y' jump to csMajor
 
 mov rax, 0x4092C07AE147AE14 ; Put 1200.12 into rax
 movq xmm14, rax             ; Put 1200.12 into xmm14
