@@ -1,0 +1,61 @@
+GDB:
+	Add to nasm: -g -gdwarf
+	Add to gcc: -g
+	Use gdb to call the .out file: gdb program.out
+
+	n - next	ni - show
+	s - step	si - show
+	i r   - see all 16 registers
+	i f	  - all 8 registers in FPU
+	i s   - all SSE registers
+	i a   - all registers
+	i r s - show xmm and r registers
+	i r a - show all 
+
+	p/<format> <address>
+		d - deciaml
+		c - char
+		a - address
+		s - string
+		f - float
+		u - unsigned int
+		t - binary
+		x - hex
+		
+	p/x &cost - Get memory address
+	
+	x/<#ints><dataType><byteSize> <Memory Address> - x/4xg $rax
+		#ints 	 - How many values to show
+		dataType - same as p/ types
+		byteSize - Symbol - Bytes
+			b  - 1 - byte
+			h  - 2 - half
+			w  - 4 - word
+			g  - 8 - giant
+				
+	
+Ctrl + D = E.O.T. End Of Tranmision = Ascii 4
+	
+ASM Example Statements:
+	; Print a regular string
+	mov qword rdi, stringformat ; stringformat db "%s", 0
+	mov qword rsi, string		; string db "something", 10, 0
+	mov qword rax, 0            ; There are zero variables
+	call printf					; call printf function
+
+	; Print string with one variable
+	push qword 0				; Make sure the registers are clear
+	mov rax, 1					; There is one variable
+	mov rdi, varstring			; varstring db "here is a float %lf", 10, 0
+	movsd xmm0, xmmXX			; move the value stored in xmmXX into xmm0
+	call printf					; call printf function
+	pop rax						; pop the stored value from push qword statement
+	
+	; Take Float Input
+	mov rax, 1					; Take one input
+	mov rdi, floatformat		; floatformat db "%lf", 0
+	push qword 0				; Make sure the registers are clear
+	mov rsi, rsp				; point rsi at rsp
+	call scanf					; Call scanf function
+	movsd xmmXX, [rsp]			; Copy input value into xmmXX
+	pop rax						; pop the stored value from push qword statement
