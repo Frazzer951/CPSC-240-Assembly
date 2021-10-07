@@ -80,7 +80,7 @@ push rbx                                                    ;Backup rbx
 pushf                                                       ;Backup rflags
 
 ;There are 15 pushes above.  Make one more push of any value so that the number of pushes is an even number
-push qword -1                                               ;Now the number of pushes is even
+;push qword -1                                               ;Now the number of pushes is even
 ;Registers rax, rip, and rsp are usually not backed up.
 
 ; Welcome Message
@@ -98,11 +98,9 @@ call printf
 ; Take height input and enter it into xmm10
 mov rax, 1
 mov rdi, floatformat
-push qword 0
 mov rsi, rsp
 call scanf
 movsd xmm10, [rsp]
-pop rax
 
 ; Prompt for width
 mov qword rdi, stringformat
@@ -113,11 +111,9 @@ call printf
 ; Take width input and enter it into xmm11
 mov rax, 1
 mov rdi, floatformat
-push qword 0
 mov rsi, rsp
 call scanf
 movsd xmm11, [rsp]
-pop rax
 
 ; Find the perimiter
 movsd xmm12, xmm10
@@ -126,12 +122,10 @@ addsd xmm12, xmm11
 addsd xmm12, xmm11
 
 ; Print out the perimiter
-push qword 0
 mov rax, 1
 mov rdi, perimeterprint
 movsd xmm0, xmm12
 call printf
-pop rax
 
 ; Find the average side length
 mov r8, 4
@@ -140,18 +134,18 @@ movsd xmm13, xmm12
 divsd xmm13, xmm8
 
 ; Print out the perimiter
-push qword 0
 mov rax, 1
 mov rdi, avglength
 movsd xmm0, xmm13
 call printf
-pop rax
 
 ; Return Message
 mov qword rdi, stringformat
 mov qword rsi, return
 mov qword rax, 0
 call printf
+
+pop rax
 
 ;Restore the original values to the general registers before returning to the caller.
 pop rax                                                     ;Remove the extra -1 from the stack
